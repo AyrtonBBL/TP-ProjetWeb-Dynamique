@@ -1,12 +1,11 @@
-{{define "index"}}
+{{define "produit"}}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page - Menu</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Document</title>
+     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
     <header class="navigation"> 
@@ -16,14 +15,12 @@
             <a href="/add-produit">Ajouter</a>
         </nav>
     </header>
-    <h1 class="titre">Les</h1>
-    <h1 class="titre">produits</h1>
-    <section class="article">
-        {{range .}}
-         <div class="panneau-article">
-            <img src="{{.Image}}" alt="{{.Nom}}" class="article-image">
+    <section class="article-wrapper">
+        
+         <div class="article-conteneur">
+            <img src="{{.Image}}" alt="{{.Nom}}" class="art-image">
             <div class="description">
-                <h2 class="article-nom">{{.Nom}}</h2>
+                <h2 class="article-detail">{{.Nom}}</h2>
                 {{if .EstenReduc}}
                 <p class="prix">
                     <span class="ancien-prix">{{printf "%.2f" .Prix}} €</span>
@@ -32,12 +29,9 @@
                 {{else}}
                 <p class="prix">{{printf "%.2f" .Prix}} €</p>
                 {{end}}
-                <a class="bouton-consulter" href="/produit?Id={{.Id}}">Consulter</a>
+                <button>ajouter au panier</button>
             </div>
         </div>
-        {{else}}
-        <p>Aucun produits disponibles</p>
-        {{end}}
     </section>
 </body>
 </html>
