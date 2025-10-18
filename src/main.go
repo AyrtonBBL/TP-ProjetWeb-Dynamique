@@ -38,22 +38,22 @@ func main() {
 	})
 
 	http.HandleFunc("/produit", func(w http.ResponseWriter, r *http.Request) {
-        idProduit := r.FormValue("Id")
-        produitId, err := strconv.Atoi(idProduit)
-        if err != nil {
-            http.Error(w, "Erreur: id du produit invalide", http.StatusBadRequest)
-            return
-        }
+		idProduit := r.FormValue("Id")
+		produitId, err := strconv.Atoi(idProduit)
+		if err != nil {
+			http.Error(w, "Erreur: id du produit invalide", http.StatusBadRequest)
+			return
+		}
 
-        for _, product := range articles{
-            if product.Id == produitId {
-                listTemplates.ExecuteTemplate(w, "produit", product)
-                return
-            }
-        }
+		for _, product := range articles {
+			if product.Id == produitId {
+				listTemplates.ExecuteTemplate(w, "produit", product)
+				return
+			}
+		}
 
-        http.Error(w, "Produit non trouvé", http.StatusNotFound)
-    })
+		http.Error(w, "Produit non trouvé", http.StatusNotFound)
+	})
 
 	http.HandleFunc("/add-produit", func(w http.ResponseWriter, r *http.Request) {
 		listTemplates.ExecuteTemplate(w, "add-produit", articles)
